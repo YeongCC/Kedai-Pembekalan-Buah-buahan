@@ -1,0 +1,85 @@
+.social-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+/* Tooltips */
+.tooltip {
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    font-size: 15px;
+    opacity: 0;
+    pointer-events: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .tooltip:after {
+    display: block;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    content: "";
+    border: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: transparent;
+    transform: translate(50%, 100%);
+  }
+/* Hover Effect*/
+.social-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-150%, -50%);
+}
+
+.social-icon-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+/* Tooltips */
+.tooltip-1 {
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    font-size: 15px;
+    opacity: 0;
+    pointer-events: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .tooltip-1:after {
+    display: block;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    content: "";
+    border: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: transparent;
+    transform: translate(50%, 100%);
+  }
+
+/* Hover Effect*/
+.social-icon-1:hover .tooltip-1 {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(50%, -20%);
+}
+
