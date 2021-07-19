@@ -34,7 +34,7 @@
 			}
 		});
 	});
-	// DOMContentLoaded  end
+
     </script>
 
 </head>
@@ -86,7 +86,8 @@
                         <div class="col-12">
                             <div id="custom-search-input">
                                 <div class="input-group">
-                                    <input type="text" class="search-query form-control" placeholder="Search" />
+                                    <input type="text" class="search-query form-control" placeholder="Search"
+                                        id="search" />
                                     <span class="input-group-btn">
                                         <button type="button" disabled>
                                             <span class="fa fa-search"></span>
@@ -105,33 +106,32 @@
     <div class="album py-5 ">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
+                @foreach($product as $product)
+                @if($product->Fruit_Status=="1")
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
+                        <img src="{{ asset('images/product/')}}/{{$product->Fruit_Picture}}"
+                            alt="{{$product->Fruit_Name}}" width="100%" height="225"
+                            preserveAspectRatio="xMidYMid slice" focusable="false" style="object-fit: contain ;">
                         <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
+                            <p class="card-title">{{$product->Fruit_Name}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Order</button>
                                 </div>
-                                <small class="text-muted">9 mins</small>
+                                <small class="text-muted">RM&nbsp;{{$product->Fruit_Price}}</small>
                             </div>
                         </div>
+
                     </div>
                 </div>
-
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
+
     <footer class="text-muted py-5">
         <div class="container">
             <p class="mb-0 border">

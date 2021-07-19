@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if(Session::has('insert'))
+<div class="alert alert-success" style="  text-align: center;" role="stylesheet">         ​
+	{{ Session::get('insert') }}
+</div>        ​
+ @endif
 <div class="container">
     <p style="font-size: 30px">Product Settings</p>
     <hr>
@@ -10,7 +14,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title" style="margin-top:5px"><i class="fa fa-plus" style="font-size:36px"></i></h5>
-                    <a href="{{url('/')}}"> Insert Product</a>
+                    <a href="{{url('/insertProduct')}}"> Insert Product</a>
                 </div>
             </div>
         </div>
@@ -19,19 +23,11 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="material-icons" style="font-size:36px">sync</i></h5>
-                    <a href="{{url('/')}}"> Update Product</a>
+                    <a href="{{url('/viewProduct')}}">Manage Product</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6 mb-3">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h5 class="card-title"><i class="material-icons" style="font-size:36px">delete</i></h5>
-                    <a href="{{url('/')}}"> Delete Product</a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <p style="font-size: 30px">Order Details</p>
