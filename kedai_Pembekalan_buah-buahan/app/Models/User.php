@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'position',
     ];
 
     /**
@@ -40,4 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getUsers($search_keyword) {
+        $user = DB::table('users');
+
+        if($search_keyword && !empty($search_keyword)) {
+            $user->where(function($q) use ($search_keyword) {
+                $q->where('users.name', 'like', "%{$search_keyword}%")
+                ->orWhere('users.email', 'like', "%{$search_keyword}%");
+            });
+        }
+
+        return $user->paginate(PER_PAGE_LIMIT);
+    }
 }

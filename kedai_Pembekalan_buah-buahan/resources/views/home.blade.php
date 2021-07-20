@@ -6,6 +6,16 @@
 	{{ Session::get('insert') }}
 </div>        ​
  @endif
+ @if(Session::has('create'))
+<div class="alert alert-success" style="  text-align: center;" role="stylesheet">         ​
+	{{ Session::get('create') }}
+</div>        ​
+ @endif
+ @if(Session::has('updateOwn'))
+ <div class="alert alert-success" style="  text-align: center;" role="stylesheet">         ​
+     {{ Session::get('updateOwn') }}
+ </div>        ​
+  @endif
 <div class="container">
     <p style="font-size: 30px">Product Settings</p>
     <hr>
@@ -59,7 +69,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title" style="margin-top:5px"><i class="fa fa-user-plus" style="font-size:36px"></i></h5>
-                    <a href="{{url('/')}}">Add helper</a>
+                    <a href="{{url('/createUser')}}">Add helper</a>
                 </div>
             </div>
         </div>
@@ -68,7 +78,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="material-icons" style="font-size:36px">supervisor_account</i></h5>
-                    <a href="{{url('/')}}">Manage Helper Account</a>
+                    <a href="{{url('/showUser')}}">Manage Helper Account</a>
                 </div>
             </div>
         </div>
@@ -77,7 +87,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title" ><i class="material-icons" style="font-size:36px">account_circle</i></h5>
-                    <a href="{{url('/')}}">Manage Own Account</a>
+                    <a href="{{ route('showown.update', ['position' => "1"]) }}">Manage Own Account</a>
                 </div>
             </div>
         </div>

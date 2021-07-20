@@ -2,25 +2,34 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\FruitController;
-use App\Http\Controllers\ShowFruitController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShowProductController;
+use App\Http\Controllers\UserController;
 
 
-
-Route::get('/',[ShowFruitController::class,'show'])->name('index');
-
+Route::get('/',[ShowProductController::class,'showProduct'])->name('index');
+Route::get('getMoreProductCus',[ShowProductController::class,'getMoreProducts'])->name('get-more-products-cus');
 
 Auth::routes();
 Route::get('/logout', [LoginController::class,'logout']);
-Route::get('/insertProduct',[FruitController::class,'interface'])->name('insertProduct');
-Route::post('/insertProduct/store',[FruitController::class,'store'])->name('insertProduct.store');
+Route::get('/insertProduct',[ProductController::class,'Productinterface'])->name('insertProduct');
+Route::post('/insertProduct/store',[ProductController::class,'store'])->name('insertProduct.store');
+Route::get('/viewProduct',[ProductController::class,'viewProduct'])->name('viewProduct');
+Route::get('getMoreProduct', [ProductController::class,'getMoreProducts'])->name('get-more-products');
+Route::get('/editProduct/{id}',[ProductController::class,'edit'])->name('showEditProduct');
+Route::post('/updateProduct',[ProductController::class,'update'])->name('updateProduct.store');
+Route::get('/deleteProduct/{id}',[ProductController::class,'delete'])->name('deleteProduct.store');
+Route::get('/hideProduct/{id}/{status}',[ProductController::class,'hide'])->name('hideProduct.store');
 
-Route::get('/viewProduct',[FruitController::class,'show'])->name('viewProduct');
-Route::get('getMoreFruits', [FruitController::class,'getMoreFruits'])->name('get-more-fruits');
+Route::get('/createUser',[UserController::class,'Authinterface'])->name('createUser');
+Route::post('/createUser/create',[UserController::class,'createUser'])->name('createUser.create');
+Route::get('/showUser',[UserController::class,'showUser'])->name('showUser');
+Route::get('getMoreUsers', [UserController::class,'getMoreUsers'])->name('get-more-users');
+Route::get('/editUser/{id}',[UserController::class,'editUser'])->name('showEditUser');
+Route::post('/updateUser',[UserController::class,'updateUser'])->name('updateProduct.create');
+Route::get('/deleteUser/{id}',[UserController::class,'deleteUser'])->name('deleteUser.create');
 
-Route::get('/editProduct/{id}',[FruitController::class,'edit'])->name('showEditProduct');
-Route::post('/updateProduct',[FruitController::class,'update'])->name('updateProduct.store');
-Route::get('/deleteProduct/{id}',[FruitController::class,'delete'])->name('deleteProduct.store');
-Route::get('/hideProduct/{id}/{status}',[FruitController::class,'hide'])->name('hideProduct.store');
+Route::get('/editOwn/{position}',[UserController::class,'editOwn'])->name('showown.update');
+Route::post('/updateOwn',[UserController::class,'updateOwn'])->name('own.update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

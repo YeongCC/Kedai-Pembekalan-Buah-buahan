@@ -6,8 +6,8 @@
             <div class="card">
                 <div class="card-header bg-white">
                     <div class="row bg-white ">
-                        <div class="col col-xs-6">Insert Product</div>
-                        <div class="col col-xs-6 text-right"><a href="{{route('viewProduct')}}">Back</a></div>
+                        <div class="col col-xs-6">Update Product</div>
+                        <div class="col col-xs-6 text-right"><a href="{{route('viewProduct')}}">Cancel</a></div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -16,11 +16,11 @@
                         @foreach($product as $product)
                         <input type="text" name="id" id="id" value="{{$product->id}}" style="display : none;">
                         <div class="form-group row">
-                            <label for="Fruit_Name" class="col-md-4 col-form-label text-md-right">Product Name</label>
+                            <label for="Product_Name" class="col-md-4 col-form-label text-md-right">Product Name</label>
 
                             <div class="col-md-6">
                                 <input id="Product_Name" type="text" class="form-control" name="Product_Name"
-                                    value="{{$product->Fruit_Name}}">
+                                    value="{{$product->Product_Name}}">
                                 <span id="namefield" style="color:red;">{{$errors->first('Product_Name')}}</span>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                     <img id="profileDisplay" style="width: 270px;height:270px;object-fit: contain ;">
                                     @else
                                     <img id="profileDisplay" style="width: 270px;height:270px;object-fit: contain ;"
-                                        src="{{ asset('images/product/')}}/{{$product->Fruit_Picture}}">
+                                        src="{{ asset('images/product/')}}/{{$product->Product_Picture}}">
                                     @endif
                                     <div class="icon" onclick="triggerClick()"><i
                                             class="fas fa-cloud-upload-alt"></i>&nbsp;Upload</div>
@@ -46,46 +46,49 @@
 
 
                         <div class="form-group row">
-                            <label for="Fruit_Price" class="col-md-4 col-form-label text-md-right">Product Price</label>
+                            <label for="Product_Price" class="col-md-4 col-form-label text-md-right">Product Price</label>
 
                             <div class="col-md-6">
-                                <input id="Fruit_Price" type="text" class="form-control " name="Fruit_Price"
-                                    value="{{$product->Fruit_Price}}">
-                                <span id="pricefield" style="color:red;">{{$errors->first('Fruit_Price')}}</span>
+                                <input id="Product_Price" type="text" class="form-control " name="Product_Price"
+                                    value="{{$product->Product_Price}}">
+                                <span id="pricefield" style="color:red;">{{$errors->first('Product_Price')}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Brand" class="col-md-4 col-form-label text-md-right">Product Brand</label>
+                            <label for="Product_Brand" class="col-md-4 col-form-label text-md-right">Product Brand</label>
                             <div class="col-md-6">
-                                <input id="v" type="text" class="form-control " name="Fruit_Brand"
-                                    value="{{$product->Fruit_Brand}}">
+                                <input id="Product_Brand" type="text" class="form-control " name="Product_Brand"
+                                    value="{{$product->Product_Brand}}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Quantity" class="col-md-4 col-form-label text-md-right">Product
+                            <label for="Product_Quantity" class="col-md-4 col-form-label text-md-right">Product
                                 Quantity</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Quantity" type="number" class="form-control" name="Fruit_Quantity"
-                                    value="{{$product->Fruit_Quantity}}">
+                                <input id="Product_Quantity" type="text" class="form-control" name="Product_Quantity"
+                                    value="{{$product->Product_Quantity}}">
+                                    <span id="pricefield" style="color:red;">{{$errors->first('Product_Quantity')}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Weight" class="col-md-4 col-form-label text-md-right">Product
+                            <label for="Product_Weight" class="col-md-4 col-form-label text-md-right">Product
                                 Weight</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Weight" type="text" class="form-control" name="Fruit_Weight"
-                                    value="{{$product->Fruit_Weight}}">
+                                <input id="Product_Weight" type="text" class="form-control" name="Product_Weight"
+                                    value="{{$product->Product_Weight}}">
+                                    <span id="pricefield" style="color:red;">{{$errors->first('Product_Weight')}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Pack" class="col-md-4 col-form-label text-md-right">Product Pack</label>
+                            <label for="Product_Pack" class="col-md-4 col-form-label text-md-right">Product Pack</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Pack" type="number" class="form-control" name="Fruit_Pack"
-                                    value="{{$product->Fruit_Pack}}">
+                                <input id="Product_Pack" type="text" class="form-control" name="Product_Pack"
+                                    value="{{$product->Product_Pack}}">
+                                    <span id="pricefield" style="color:red;">{{$errors->first('Product_Pack')}}</span>
                             </div>
                         </div>
 

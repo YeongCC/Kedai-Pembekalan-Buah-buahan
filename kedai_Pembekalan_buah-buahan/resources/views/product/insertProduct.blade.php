@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="Fruit_Name" class="col-md-4 col-form-label text-md-right">Product Name</label>
+                            <label for="Product_Name" class="col-md-4 col-form-label text-md-right">Product Name</label>
 
                             <div class="col-md-6">
                                 <input id="Product_Name" type="text" class="form-control" name="Product_Name">
@@ -43,41 +43,44 @@
 
 
                         <div class="form-group row">
-                            <label for="Fruit_Price" class="col-md-4 col-form-label text-md-right">Product Price</label>
+                            <label for="Product_Price" class="col-md-4 col-form-label text-md-right">Product Price</label>
 
                             <div class="col-md-6">
-                                <input id="Fruit_Price" type="text" class="form-control " name="Fruit_Price">
-                                <span id="pricefield" style="color:red;">{{$errors->first('Fruit_Price')}}</span>
+                                <input id="Product_Price" type="text" class="form-control " name="Product_Price">
+                                <span id="pricefield" style="color:red;">{{$errors->first('Product_Price')}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Brand" class="col-md-4 col-form-label text-md-right">Product Brand</label>
+                            <label for="Product_Brand" class="col-md-4 col-form-label text-md-right">Product Brand</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Brand" type="text" class="form-control " name="Fruit_Brand">
+                                <input id="Product_Brand" type="text" class="form-control " name="Product_Brand">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Quantity" class="col-md-4 col-form-label text-md-right">Product
+                            <label for="Product_Quantity" class="col-md-4 col-form-label text-md-right">Product
                                 Quantity</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Quantity" type="number" class="form-control" name="Fruit_Quantity">
+                                <input id="Product_Quantity" type="text" class="form-control" name="Product_Quantity">
+                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Quantity')}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Weight" class="col-md-4 col-form-label text-md-right">Product
+                            <label for="Product_Weight" class="col-md-4 col-form-label text-md-right">Product
                                 Weight</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Weight" type="text" class="form-control" name="Fruit_Weight">
+                                <input id="Product_Weight" type="text" class="form-control" name="Product_Weight">
+                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Weight')}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="Fruit_Pack" class="col-md-4 col-form-label text-md-right">Product Pack</label>
+                            <label for="Product_Pack" class="col-md-4 col-form-label text-md-right">Product Pack</label>
                             <div class="col-md-6">
-                                <input id="Fruit_Pack" type="number" class="form-control" name="Fruit_Pack">
+                                <input id="Product_Pack" type="text" class="form-control" name="Product_Pack">
+                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Pack')}}</span>
                             </div>
                         </div>
 
