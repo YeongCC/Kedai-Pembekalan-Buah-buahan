@@ -9,6 +9,10 @@ use App\Http\Controllers\UserController;
 
 Route::get('/',[ShowProductController::class,'showProduct'])->name('index');
 Route::get('getMoreProductCus',[ShowProductController::class,'getMoreProducts'])->name('get-more-products-cus');
+Route::get('getProductDetails/{id}', [ShowProductController::class,'product_details'])->name('get-more-products-detail-cus');
+Route::get('/checkReceipt', function () {return view('customer/Receipt/checkReceipt');});
+Route::get('getProductDetails2/{id}', [ShowProductController::class,'view_product_details'])->name('get-more-products-detail-cus2');
+
 
 Auth::routes();
 Route::get('/logout', [LoginController::class,'logout']);

@@ -1,6 +1,10 @@
+@extends('layouts/navBar')
+@section('content')
+@push('scripts')
 <script type="text/javascript">
     $(document).ready(function() {
         $(document).on('click', '.pagination a', function(event) {
+
           event.preventDefault();
           var page = $(this).attr('href').split('page=')[1];
           getMoreProducts(page);
@@ -13,7 +17,6 @@
     });
 
     function getMoreProducts(page) {
-
       var search = $('#search').val();
 
       $.ajax({
@@ -27,10 +30,10 @@
         }
       });
     }
+
 </script>
+@endpush
 
-
-@include('layouts/navBar')
 {{-- search --}}
 <div class="py-5 text-center container"
     style=" background-image: url('{{asset('images/background/1.jpg')}}');background-size: cover;">
@@ -66,4 +69,5 @@
     </div>
 </div>
 
-@include('layouts/footer')
+@endsection
+

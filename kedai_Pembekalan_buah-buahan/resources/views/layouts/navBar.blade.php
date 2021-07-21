@@ -18,6 +18,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <link href="{{ asset('css/icon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/search.css') }}" rel="stylesheet">
     <script type="text/javascript">
@@ -55,7 +57,7 @@
     <!-- ============= COMPONENT ============== -->
     <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
-            <a class="navbar-brand" href="#" style=" font-size: 20px;">
+            <a class="navbar-brand" href="{{url('/')}}" style=" font-size: 20px;">
                 <h5>SCA TRADING</h5>
             </a>
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
@@ -68,7 +70,7 @@
                                 style="font-size:36px"></i>
                             <div class="tooltip">Cart</div>
                         </a></li>
-                    <li class="nav-item"><a class="nav-link social-icon-1" href="#"><i class="fas fa-receipt"
+                    <li class="nav-item"><a class="nav-link social-icon-1" href="{{url('/checkReceipt')}}"><i class="fas fa-receipt"
                                 style="font-size:36px"></i>
                             <div class="tooltip-1">Check&nbsp;Receipt</div>
                         </a></li>
@@ -77,7 +79,10 @@
             </div>
         </div>
     </nav>
-
+    <main class="py-4">
+        @yield('content')
+    </main>
+    @stack('scripts')
 </body>
-
+@include('layouts/footer')
 </html>

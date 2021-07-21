@@ -9,7 +9,7 @@ class ShowProductController extends Controller
     public function showProduct()
     {
         $product = product::getProducts('');
-        return view('welcome')->with('product', $product);
+        return view('customer/cusShow')->with('product', $product);
     }
 
     public function getMoreProducts()
@@ -23,5 +23,14 @@ class ShowProductController extends Controller
             }
             return view('customer/cusProductCard', compact('product'))->render();
         }
+    }
+
+    public function product_details($id) {
+        return product::findOrFail($id);
+    }
+
+    public function view_product_details($id) {
+        $product = product::all()->where('id', $id);
+        return view('customer/viewProductDetail')->with('product', $product);
     }
 }
