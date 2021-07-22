@@ -4,8 +4,10 @@
     @if($key->Product_Status=="1")
     <div class="col">
         <div class="card shadow-sm">
-            <img src="{{ asset('images/product/')}}/{{$key->Product_Picture}}" alt="{{$key->Product_Name}}" width="100%"
-                height="200px" preserveAspectRatio="xMidYMid slice" focusable="false" style="object-fit: contain ;" href="{{ route('get-more-products-detail-cus2', ['id' => $key->id]) }}">
+            <a href="{{ route('get-more-products-detail-cus2', ['id' => $key->id]) }}"><img
+                    src="{{ asset('images/product/')}}/{{$key->Product_Picture}}" alt="{{$key->Product_Name}}"
+                    width="100%" height="200px" preserveAspectRatio="xMidYMid slice" focusable="false"
+                    style="object-fit: contain ;"></a>
             <div class="card-body">
                 <strong>
                     <p class="card-title text-uppercase" style=" font-size: 25px;">{{$key->Product_Name}}</p>
@@ -13,9 +15,10 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <p style="color:green">RM&nbsp;{{$key->Product_Price}}</p>
                     <div class="btn-group">
-                        <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ route('get-more-products-detail-cus2', ['id' => $key->id]) }}">View</a>
-                        <button type="button" class="btn btn-sm btn-outline-secondary detailBtn" data-toggle="modal"
-                            data-target="#myModal" data-id="{{ $key->id }}">Add to Cart</button>
+                        <a type="button" class="btn btn-sm btn-outline-secondary"
+                            href="{{ route('get-more-products-detail-cus2', ['id' => $key->id]) }}">View</a>
+                        <a type="button" class="btn btn-sm btn-outline-secondary detailBtn" data-toggle="modal"
+                            data-target="#myModal" data-id="{{ $key->id }}">Add to Cart</a>
                     </div>
 
                 </div>
@@ -43,8 +46,12 @@
                 </button>
 
                 <div class="container">
-                    <p style="margin-top:60px;margin-left:5px;font-size: 25px;text-align: center;">Added to cart
-                        successfully!</p>
+                    @if(Session::has('modalsuccess'))
+                    <p style="margin-top:60px;margin-left:5px;font-size: 25px;text-align: center;">
+                        {{ Session::get('modalsuccess') }}</p>
+                    @endif
+
+                    <p style="margin-top:60px;margin-left:5px;font-size: 25px;text-align: center;" id="returnResult"></p>
                 </div>
                 <div class="container">
                     <div style="text-align: center;"><img id="target"
@@ -58,8 +65,9 @@
                                 data-dismiss="modal">Continue Shop</button>
                         </div>
                         <div class="container" style="margin-top:20px;margin-bottom:30px;text-align: center;">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View Cart</button>
-                    </div>
+                            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{url('/cart')}}">View
+                                Cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,9 +88,7 @@
     $(document).ready(function() {
       $('.detailBtn').click(function() {
         const id = $(this).attr('data-id');
-        console.log(id);
         $.ajax({
-
           url: 'getProductDetails/'+id,
           type: 'GET',
           data: {
@@ -90,7 +96,7 @@
           },
           success:function(data) {
             read(data);
-
+            addToCart(id);
           }
         })
       });
@@ -99,10 +105,21 @@
 function read(data){
      $('#Product_Name').html(data.Product_Name);
      $('#Product_Price').html("RM "+data.Product_Price);
-     $('#Product_Quantity').html(data.Product_Quantity);
-     $('#Product_Weight').html(data.Product_Weight);
-     $('#Product_Pack').html(data.Product_Pack);
-     $('#Product_Brand').html(data.Product_Brand);
      $("#target").attr("src","images/product/" + data.Product_Picture);
+}
+
+function addToCart(id){
+    $.ajax({
+    url: 'addToCartModel/'+id,
+    type: 'GET',
+    data: {
+        "id": id
+          },
+    success:function(cart) {
+        if (cart!="") {
+            $('#returnResult').html('Product added to cart successfully!');
+        }
+        }
+    })
 }
 </script>

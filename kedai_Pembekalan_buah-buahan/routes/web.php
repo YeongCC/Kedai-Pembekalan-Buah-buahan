@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShowProductController;
+use App\Http\Controllers\CartOrderController;
 use App\Http\Controllers\UserController;
 
 
@@ -12,7 +13,12 @@ Route::get('getMoreProductCus',[ShowProductController::class,'getMoreProducts'])
 Route::get('getProductDetails/{id}', [ShowProductController::class,'product_details'])->name('get-more-products-detail-cus');
 Route::get('/checkReceipt', function () {return view('customer/Receipt/checkReceipt');});
 Route::get('getProductDetails2/{id}', [ShowProductController::class,'view_product_details'])->name('get-more-products-detail-cus2');
-
+Route::get('/cart', [CartOrderController::class,'cart'])->name('cart');
+Route::post('/addToCart', [CartOrderController::class,'addToCart'])->name('addToCart.order');
+Route::get('addToCartModel/{id}', [CartOrderController::class,'addToCartModal'])->name('addToCartModel');
+Route::patch('updateFromCart', [CartOrderController::class,'updateCart'])->name('updateCart');
+Route::delete('removeFromCart', [CartOrderController::class,'removeCart'])->name('removeCart');
+Route::get('/confirmCart', [CartOrderController::class,'confirmCart'])->name('confirmCart');
 
 Auth::routes();
 Route::get('/logout', [LoginController::class,'logout']);

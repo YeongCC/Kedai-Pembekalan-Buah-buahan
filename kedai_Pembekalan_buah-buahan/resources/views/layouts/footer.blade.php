@@ -1,4 +1,4 @@
-<footer class="text-muted py-5 bg-light" style="margin-top:10px">
+<footer class="text-muted py-5 bg-light " style="margin-top:4%">
     <div class="container">
         <p class="mb-0 border">
             <h5>Location</h5>

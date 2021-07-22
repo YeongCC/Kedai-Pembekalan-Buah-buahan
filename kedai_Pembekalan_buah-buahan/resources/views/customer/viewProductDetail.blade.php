@@ -1,10 +1,13 @@
 @extends('layouts/navBar')
 @section('content')
 
+
+
 @foreach($product as $key)
 
 <div class="container">
-
+    <form method="POST" action="{{ route('addToCart.order') }}" enctype="multipart/form-data">
+        @csrf
     <div class="card border-0">
         <div class="row">
             <div class="col-sm-7">
@@ -22,7 +25,7 @@
                         <div class="input-group-prepend">
                           <button class="btn text-monospace minus" type="button">-</button>
                         </div>
-                        <input type="number" class="count form-control" min="0" max="10" step="1" value="1">
+                        <input type="number" class="count form-control cannot" value="1" >
                         <div class="input-group-append">
                           <button class="btn text-monospace plus" type="button">+</button>
                         </div>
@@ -30,7 +33,7 @@
                 </div>
 
                 <div class="row mb-5 mt-5 ">
-                    <button class="btn btn-lg btn-outline-secondary" type="button">Add To Cart</button>
+                    <button class="btn btn-lg btn-outline-secondary"  type="submit" >Add To Cart</button>
                 </div>
                 <hr class="m-0 p-0">
 
@@ -38,7 +41,9 @@
         </div>
     </div>
 </div>
-
+<input type="number" class="count form-control"  value="1" name="quantity" style="display : none;">
+<input type="text" name="id" value="{{$key->id}}" style="display : none;">
+</form>
 @endforeach
 @endsection
 
@@ -61,8 +66,8 @@
 <script>
 $(document).ready(function() {
   min = 0; // Minimum of 0
-  max = 30; // Maximum of 10
-  $('.count').prop('disabled', true);
+  max = 30; // Maximum of 30
+  $('.cannot').prop('disabled', true);
   $(".minus").on("click", function() {
     if ($('.count').val() > min) {
       $('.count').val(parseInt($('.count').val()) - 1 );
