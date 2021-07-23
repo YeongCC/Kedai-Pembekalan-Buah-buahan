@@ -51,39 +51,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Product_Brand" class="col-md-4 col-form-label text-md-right">Product Brand</label>
-                            <div class="col-md-6">
-                                <input id="Product_Brand" type="text" class="form-control " name="Product_Brand">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="Product_Quantity" class="col-md-4 col-form-label text-md-right">Product
-                                Quantity</label>
-                            <div class="col-md-6">
-                                <input id="Product_Quantity" type="text" class="form-control" name="Product_Quantity">
-                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Quantity')}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="Product_Weight" class="col-md-4 col-form-label text-md-right">Product
-                                Weight</label>
-                            <div class="col-md-6">
-                                <input id="Product_Weight" type="text" class="form-control" name="Product_Weight">
-                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Weight')}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="Product_Pack" class="col-md-4 col-form-label text-md-right">Product Pack</label>
-                            <div class="col-md-6">
-                                <input id="Product_Pack" type="text" class="form-control" name="Product_Pack">
-                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Pack')}}</span>
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button  class="btn btn-primary" id="insert"  type="submit">

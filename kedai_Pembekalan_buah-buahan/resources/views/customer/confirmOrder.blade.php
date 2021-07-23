@@ -8,14 +8,14 @@
                 <div class="card-header bg-white">
                     <div class="row bg-white ">
                         <div class="container">
-                            <div style="float: left">Fill Up Your Datail</div>
+                            <div style="float: left">Fill Up Your Detail</div>
                             <div style="float: right"><a href="{{url('/')}}">Cancel</a></div>
                         </div>
 
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('insertProduct.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('') }}" enctype="multipart/form-data">
 
                         @csrf
 
@@ -30,8 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Product_Price" class="col-md-4 col-form-label text-md-right">Product
-                                Price</label>
+                            <label for="Product_Price" class="col-md-4 col-form-label text-md-right">Adress</label>
 
                             <div class="col-md-6">
                                 <input id="Product_Price" type="text" class="form-control " name="Product_Price">
@@ -40,19 +39,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Product_Brand" class="col-md-4 col-form-label text-md-right">Product
-                                Brand</label>
-                            <div class="col-md-6">
-                                <input id="Product_Brand" type="text" class="form-control " name="Product_Brand">
-                            </div>
-                        </div>
+                            <label for="Product_Price" class="col-md-4 col-form-label text-md-right">Phone Number</label>
 
-                        <div class="form-group row">
-                            <label for="Product_Quantity" class="col-md-4 col-form-label text-md-right">Product
-                                Quantity</label>
                             <div class="col-md-6">
-                                <input id="Product_Quantity" type="text" class="form-control" name="Product_Quantity">
-                                <span id="picturefield" style="color:red;">{{$errors->first('Product_Quantity')}}</span>
+                                <input id="Product_Price" type="text" class="form-control " name="Product_Price">
+                                <span id="pricefield" style="color:red;">{{$errors->first('Product_Price')}}</span>
                             </div>
                         </div>
 

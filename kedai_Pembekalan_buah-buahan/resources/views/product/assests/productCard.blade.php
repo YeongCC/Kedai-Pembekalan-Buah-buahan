@@ -9,10 +9,6 @@
                 <div class="mb-3">
                     <p class="card-text"><strong>Name :</strong>{{$key->Product_Name}}</p>
                     <p class="card-text"><strong>Price : </strong>RM&nbsp;{{$key->Product_Price}}</p>
-                    <p class="card-text"><strong>Brand : </strong>{{$key->Product_Brand}}</p>
-                    <p class="card-text"><strong>Quantity : </strong>{{$key->Product_Quantity}}</p>
-                    <p class="card-text"><strong>Weight : </strong>{{$key->Product_Weight}}</p>
-                    <p class="card-text"><strong>Pack : </strong>{{$key->Product_Pack}}</p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center ">
                     <div class="btn-group">
@@ -48,10 +44,6 @@
                     <div style="opacity:0.2!important">
                         <p class="card-text"><strong>Name :</strong>{{$key->Product_Name}}</p>
                         <p class="card-text"><strong>Price : </strong>RM&nbsp;{{$key->Product_Price}}</p>
-                        <p class="card-text"><strong>Brand : </strong>{{$key->Product_Brand}}</p>
-                        <p class="card-text"><strong>Quantity : </strong>{{$key->Product_Quantity}}</p>
-                        <p class="card-text"><strong>Weight : </strong>{{$key->Product_Weight}}</p>
-                        <p class="card-text"><strong>Pack : </strong>{{$key->Product_Pack}}</p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
