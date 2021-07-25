@@ -5,7 +5,7 @@
 
 @foreach($product as $key)
 
-<div class="container">
+<div class="container" style="margin-bottom:3%">
     <form method="POST" action="{{ route('addToCart.order') }}" enctype="multipart/form-data">
         @csrf
     <div class="card border-0">

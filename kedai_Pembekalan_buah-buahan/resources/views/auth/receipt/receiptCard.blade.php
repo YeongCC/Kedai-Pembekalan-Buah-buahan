@@ -6,34 +6,29 @@
                     <thead>
                         <tr>
                             <th scope="col" style="width:10%"> </th>
-                            <th scope="col" style="width:30%">User Name</th>
-                            <th scope="col" style="width:30%">User Email</th>
+                            <th scope="col" style="width:40%">Customer</th>
+                            <th scope="col" style="width:35%">Order Id</th>
                             <th style="width:15%"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @php($i=1)
-                        @foreach($user as $key)
-                        @if($key->position=="2")
+                        @foreach($order as $key)
                         <tr>
                             <td  >
                                 {{$i++}}
                             </td>
                             <td colspan="">
-                                {{$key->name}}
+                                {{$key->Customer_Name}}
                             </td>
                             <td >
-                                {{$key->email}}
+                                {{$key->Customer_order_id}}
                             </td>
                             <td >
-                                <a type="button" class="btn btn-sm btn-outline-success " style="float: right;"
-                                href="{{ route('showEditUser', ['id' => $key->id]) }}">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
-                            <a type="button" class="btn btn-sm btn-outline-danger " style="float: right;"
-                                href="{{ route('deleteUser.create', ['id' => $key->id]) }}"
-                                onclick="return confirm('Are You Sure Want To Delete? Cannot Be Restore')">Delete</a>
+                                <a type="button" class="btn btn-sm btn-warning " style="float: left;"
+                                href="{{ route('checkOrderDetails', ['Customer_order_id' => $key->Customer_order_id]) }}">Check</a>
                             </td>
                         </tr>
-                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -43,8 +38,9 @@
             <div class="row">
                 <div class="container">
                     <div style="float: right">
-                        {{$user->links("pagination::bootstrap-4")}}
+                        {{$order->links("pagination::bootstrap-4")}}
                     </div>
+
                 </div>
             </div>
         </div>

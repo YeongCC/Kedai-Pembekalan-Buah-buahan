@@ -19,7 +19,6 @@ class CreateOrderDetailsTable extends Migration
             $table->string('Order_Product',255);
             $table->string('Order_Quantity',255);
             $table->string('Order_Price',255);
-            $table->timestamps();
         });
     }
 

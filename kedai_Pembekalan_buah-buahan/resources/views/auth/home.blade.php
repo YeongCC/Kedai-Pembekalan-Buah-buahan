@@ -47,19 +47,11 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title" ><i class="material-icons" style="font-size:36px">receipt</i></h5>
-                    <a href="{{url('/')}}"> Order</a>
+                    <a href="{{url('/viewOrder')}}"> Order</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6 mb-3">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h5 class="card-title"><i class="material-icons" style="font-size:36px">feedback</i></h5>
-                    <a href="{{url('/')}}"> Check Feedback</a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <p style="font-size: 30px">Account Details</p>
