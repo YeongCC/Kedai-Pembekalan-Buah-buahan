@@ -56,6 +56,7 @@
 
     <p style="font-size: 30px">Account Details</p>
     <hr>
+    @if(Auth::user()->position==1)
     <div class="row">
         <div class="col-sm-6 mb-3">
             <div class="card">
@@ -84,7 +85,18 @@
             </div>
         </div>
     </div>
-
+    @else
+    <div class="row">
+        <div class="col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title" ><i class="material-icons" style="font-size:36px">account_circle</i></h5>
+                    <a href="{{ route('showown.update', ['position' => "1"]) }}">Manage Own Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 
 @endsection

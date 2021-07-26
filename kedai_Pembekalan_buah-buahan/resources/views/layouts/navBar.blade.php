@@ -15,7 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src='{{ asset('js/font.js') }}'></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
@@ -79,23 +78,12 @@
                             <p>{{ count(session('cart')) }}</p>
                             <div class="tooltip">Cart</div>
                         </a></li>
-                        <li class="nav-item">
-                            <a class="nav-link social-icon-1" href="{{url('/checkReceipt')}}">
-                                <i class="fas fa-receipt" style="font-size:25px"></i>
-                                <p>&nbsp;</p>
-                                <div class="tooltip-1">Check&nbsp;Receipt</div>
-                            </a></li>
                     @else
                     <li class="nav-item">
                     <a class="nav-link social-icon" href="{{url('/cart')}}">
                         <i class="fa fa-cart-plus" style="font-size:36px"></i>
                         <div class="tooltip">Cart</div>
                     </a></li>
-                    <li class="nav-item">
-                        <a class="nav-link social-icon-1" href="{{url('/checkReceipt')}}">
-                            <i class="fas fa-receipt" style="font-size:36px"></i>
-                            <div class="tooltip-1">Check&nbsp;Receipt</div>
-                        </a></li>
                     @endif
                 </ul>
             </div>

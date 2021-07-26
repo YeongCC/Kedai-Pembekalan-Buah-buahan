@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Admin') }}</title>
+    <title>Kedai Pembekalan Buah-Buahan</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icon/fruits.png')}}">
 
     <!-- Scripts -->

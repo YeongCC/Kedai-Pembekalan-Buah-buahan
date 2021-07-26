@@ -25,7 +25,9 @@ Route::get('/corfirmDetail', function () {return view('customer/confirmOrder');}
 Route::post('/corfirmDetail/confirm', [CartOrderController::class, 'confirmDetail'])->name('confirmDetail.confirm');
 Route::get('/getReceipt', function () {return view('customer/Receipt/getReceipt');})->name('getReceipt');
 Route::get('/leaveRecaipt', [CartOrderController::class, 'leaveRecaipt'])->name('leaveRecaipt');
-Route::get('/checkReceipt', function () {return view('customer/Receipt/checkReceipt');})->name('checkReceipt');
+
+Route::get('/downloadRecaipt', [CartOrderController::class, 'downloadReceipt'])->name('downloadReceipt');
+
 
 
 Auth::routes();

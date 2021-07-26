@@ -6,6 +6,7 @@ use App\Models\product;
 use App\Models\order;
 use Session;
 use DB;
+use PDF;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
@@ -233,6 +234,12 @@ class CartOrderController extends Controller
             DB::table('order_details')->insert($database);
         }
         return redirect()->route('getReceipt');
+    }
+
+    public function downloadReceipt()
+    {
+        $pdf = PDF::loadView('customer/Receipt/receipt');
+        return $pdf->download('Orders.pdf');
     }
 
     public function leaveRecaipt()
