@@ -21,6 +21,6 @@ class product extends Model
                 ->orWhere('products.Product_Price', 'like', "%{$search_keyword}%");
             });
         }
-        return $product->paginate(PER_PAGE_LIMIT);
+        return $product->latest()->paginate(PER_PAGE_LIMIT);
     }
 }

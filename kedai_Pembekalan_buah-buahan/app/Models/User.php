@@ -53,6 +53,6 @@ class User extends Authenticatable
             });
         }
 
-        return $user->paginate(PER_PAGE_LIMIT);
+        return $user->latest()->paginate(PER_PAGE_LIMIT);
     }
 }

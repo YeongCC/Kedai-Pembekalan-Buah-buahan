@@ -7,7 +7,8 @@
                         <tr>
                             <th scope="col" style="width:10%"> </th>
                             <th scope="col" style="width:40%">Customer</th>
-                            <th scope="col" style="width:35%">Order Id</th>
+                            <th scope="col" style="width:20%">Order Id</th>
+                            <th scope="col" style="width:20%">Order Day</th>
                             <th style="width:15%"></th>
                         </tr>
                     </thead>
@@ -23,6 +24,9 @@
                             </td>
                             <td >
                                 {{$key->Customer_order_id}}
+                            </td>
+                            <td >
+                                {{$key->created_at}}
                             </td>
                             <td >
                                 <a type="button" class="btn btn-sm btn-warning " style="float: left;"

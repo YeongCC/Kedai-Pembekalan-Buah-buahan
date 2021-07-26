@@ -21,6 +21,6 @@ class order extends Model
                 ->orWhere('orders.Customer_Name', 'like', "%{$search_keyword}%");
             });
         }
-        return $order->paginate(PER_PAGE_LIMIT);
+        return $order->latest()->paginate(PER_PAGE_LIMIT);
     }
 }
