@@ -9,7 +9,7 @@ class ShowProductController extends Controller
     public function showProduct()
     {
         $product = product::getProducts('');
-        return view('customer/cusShow')->with('product', $product);
+        return view('index')->with('product', $product);
     }
 
     public function getMoreProducts()
