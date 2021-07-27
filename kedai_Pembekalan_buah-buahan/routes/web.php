@@ -8,7 +8,8 @@ use App\Http\Controllers\CartOrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShowOrderController;
 
-Route::get('/', [ShowProductController::class, 'showProduct'])->name('index');
+// Route::get('/', [ShowProductController::class, 'showProduct'])->name('index');
+Route::get('/', function () {return view('index');});
 Route::get('getMoreProductCus', [ShowProductController::class, 'getMoreProducts'])->name('get-more-products-cus');
 Route::get('getProductDetails/{id}', [ShowProductController::class, 'product_details'])->name('get-more-products-detail-cus');
 
