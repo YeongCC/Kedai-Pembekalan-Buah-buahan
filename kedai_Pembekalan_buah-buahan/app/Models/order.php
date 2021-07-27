@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class order extends Model
 {
@@ -23,4 +23,5 @@ class order extends Model
         }
         return $order->latest()->paginate(PER_PAGE_LIMIT);
     }
+
 }

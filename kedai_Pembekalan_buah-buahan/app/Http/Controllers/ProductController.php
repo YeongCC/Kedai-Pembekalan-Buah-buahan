@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller

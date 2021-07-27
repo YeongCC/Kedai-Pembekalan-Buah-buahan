@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\order;
-use Session;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use PDF;
 use Illuminate\Http\Request;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -223,15 +223,15 @@ class CartOrderController extends Controller
         $Order_id = $r->Order_id;
         $Order_Quantity = $r->Order_Quantity;
         $Order_Price = $r->Order_Price;
-
+        $orders_details =DB::table('order_details');
         for ($i = 0; $i < count($Order_Product); $i++) {
             $database = [
-                'Order_id' => $Order_id,
+                'Order_IdDetails' => $Order_id,
                 'Order_Product' => $Order_Product[$i],
                 'Order_Quantity' => $Order_Quantity[$i],
                 'Order_Price' => $Order_Price[$i],
             ];
-            DB::table('order_details')->insert($database);
+            $orders_details->insert($database);
         }
         return redirect()->route('getReceipt');
     }
