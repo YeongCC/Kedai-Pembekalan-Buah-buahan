@@ -1,24 +1,16 @@
 @extends('layouts.app')
+
 @section('content')
-@if(Session::has('update'))
-<div class="alert alert-success" style="  text-align: center;" role="stylesheet"> ​
-    {{ Session::get('update') }}
-</div> ​
-@endif
-@if(Session::has('delete'))
-<div class="alert alert-danger" style="  text-align: center;" role="stylesheet"> ​
-    {{ Session::get('delete') }}
-</div> ​
-@endif
+
 <div class="container">
     <div class="card-header bg-white">
         <div class="row bg-white ">
-            <div class="col col-xs-3">Products Details</div>
+            <div class="col col-xs-3">Orders </div>
             <div class="col col-xs-3 text-right"><a href="{{route('home')}}">Back</a></div>
         </div>
     </div>
 
-    <div class="row mt-2">
+    <div class="row mt-3">
         <div class="col-lg-6 col-md-8 mx-auto">
             <div class="row">
                 <div class="col-12">
@@ -32,8 +24,8 @@
         </div>
     </div>
 
-    <div id="productCard" style="margin-top:30px">
-        @include('product/assests/productCard')
+    <div id="receiptCard">
+        @include('auth/receipt/receiptCard_1')
     </div>
 
 </div>
@@ -43,27 +35,28 @@
         $(document).on('click', '.pagination a', function(event) {
           event.preventDefault();
           var page = $(this).attr('href').split('page=')[1];
-          getMoreProducts(page);
+          getMoreOrders(page);
         });
 
         $('#search').on('keyup', function() {
           $value = $(this).val();
-          getMoreProducts(1);
+          getMoreOrders(1);
         });
     });
 
 
-    function getMoreProducts(page) {
-    var search = $('#search').val();
-    var searchUpperCase=search.toUpperCase();
+    function getMoreOrders(page) {
+
+      var search = $('#search').val();
+      var searchUpperCase=search.toUpperCase();
       $.ajax({
         type: "GET",
         data: {
           'search_query':searchUpperCase,
         },
-        url: "{{route('get-more-products')}}" + "?page=" + page,
+        url: "{{route('get-more-orders')}}" + "?page=" + page,
         success:function(data) {
-          $('#productCard').html(data);
+          $('#receiptCard').html(data);
         }
       });
     }

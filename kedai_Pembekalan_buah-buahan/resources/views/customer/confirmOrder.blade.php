@@ -50,7 +50,7 @@
                             <label for="Customer_Name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="Customer_Name" type="text" class="form-control" name="Customer_Name">
+                                <input id="Customer_Name" type="text" class="form-control" name="Customer_Name" value="{{ old('Customer_Name') }}">
                                 <span id="Customer_Name" style="color:red;">{{$errors->first('Customer_Name')}}</span>
                             </div>
 
@@ -60,7 +60,7 @@
                             <label for="Customer_Address" class="col-md-4 col-form-label text-md-right">Adress</label>
 
                             <div class="col-md-6">
-                                <input id="Customer_Address" type="text" class="form-control " name="Customer_Address">
+                                <input id="Customer_Address" type="text" class="form-control " name="Customer_Address" value="{{ old('Customer_Address') }}">
                                 <span id="Customer_Address" style="color:red;">{{$errors->first('Customer_Address')}}</span>
                             </div>
                         </div>
@@ -69,19 +69,21 @@
                             <label for="Customer_Phone" class="col-md-4 col-form-label text-md-right">Phone Number</label>
 
                             <div class="col-md-6">
-                                <input id="Customer_Phone" type="text" class="form-control " name="Customer_Phone">
+                                <input id="Customer_Phone" type="text" class="form-control " name="Customer_Phone" value="{{ old('Customer_Phone') }}">
                                 <span id="Customer_Phone" style="color:red;">{{$errors->first('Customer_Phone')}}</span>
                             </div>
                         </div>
 
                         @foreach(session('orderdetail') as $id => $cus_details)
                         <input type="text" style="display: none;" name="Customer_order_id" value="{{ $cus_details['order_id'] }}">
+                        <input type="text" style="display: none;" name="Customer_Order_Day" value="{{ $cus_details['order_time'] }}">
                         <input type="text" style="display: none;" name="Customer_Receive_Day" value="{{ $cus_details['receive_time'] }}">
                         <input type="text" style="display: none;" name="Customer_Messages" value="{{ $cus_details['message'] }}">
                         <input type="text" style="display: none;" name="Customer_Total_Price" value=" {{ $cus_details['total_price'] }}">
                         <input type="text" style="display: none;" name="Order_id" value="{{ $cus_details['order_id'] }}">
                         @endforeach
                         @foreach(session('cart') as $id => $details)
+                        <input type="text" style="display: none;" name="Order_Product_id[]" value="{{ $details['product_id'] }}">
                         <input type="text" style="display: none;" name="Order_Product[]" value="{{ $details['name'] }}">
                         <input type="text" style="display: none;" name="Order_Quantity[]" value="{{ $details['quantity'] }}">
                         <input type="text" style="display: none;" name="Order_Price[]" value="{{ $details['price'] }}">

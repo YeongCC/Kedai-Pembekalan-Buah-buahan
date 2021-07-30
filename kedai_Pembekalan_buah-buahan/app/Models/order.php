@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class order extends Model
 {
-    protected $fillable = ['id', 'Customer_order_id', 'Customer_Name', 'Customer_Address', 'Customer_Phone', 'Customer_Receive_Day', 'Customer_Messages', 'Customer_Total_Price', 'Customer_Status'];
+    protected $fillable = ['id', 'Customer_order_id', 'Customer_Name', 'Customer_Address', 'Customer_Phone','Customer_Order_Day', 'Customer_Receive_Day', 'Customer_Messages', 'Customer_Total_Price', 'Customer_Status'];
 
     use HasFactory;
 

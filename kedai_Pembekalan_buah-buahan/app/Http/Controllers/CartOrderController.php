@@ -28,6 +28,7 @@ class CartOrderController extends Controller
         if (!$cart) {
             $cart = [
                 $id => [
+                    "product_id" => $product->id,
                     "name" => $product->Product_Name,
                     "quantity" => $quantity,
                     "price" => $product->Product_Price,
@@ -40,9 +41,10 @@ class CartOrderController extends Controller
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] = $cart[$id]['quantity'] + $quantity;
             session()->put('cart', $cart);
-            return redirect()->route('cart')->with('success', 'Product added to cart successfully!ff');
+            return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
         }
         $cart[$id] = [
+            "product_id" => $product->id,
             "name" => $product->Product_Name,
             "quantity" => $r->quantity,
             "price" => $product->Product_Price,
@@ -61,6 +63,7 @@ class CartOrderController extends Controller
         if (!$cart) {
             $cart = [
                 $id => [
+                    "product_id" => $product->id,
                     "name" => $product->Product_Name,
                     "quantity" => 1,
                     "price" => $product->Product_Price,
@@ -68,14 +71,17 @@ class CartOrderController extends Controller
                 ]
             ];
             session()->put('cart', $cart);
-            return response()->json($cart, 200);
+            $cart_number=count(session('cart'));
+            return response()->json($cart_number, 200);
         }
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
             session()->put('cart', $cart);
-            return response()->json($cart, 200);
+            $cart_number=count(session('cart'));
+            return response()->json($cart_number, 200);
         }
         $cart[$id] = [
+            "product_id" => $product->id,
             "name" => $product->Product_Name,
             "quantity" => 1,
             "price" => $product->Product_Price,
@@ -83,7 +89,8 @@ class CartOrderController extends Controller
         ];
 
         session()->put('cart', $cart);
-        return response()->json($cart, 200);
+        $cart_number=count(session('cart'));
+        return response()->json($cart_number, 200);
     }
 
 
@@ -120,6 +127,7 @@ class CartOrderController extends Controller
 
     public function clearCart()
     {
+        Session::forget('cusproductdetail');
         Session::forget('cart');
         Session::forget('orderdetail');
         session()->flash('clear', 'Clear successfully');
@@ -127,6 +135,7 @@ class CartOrderController extends Controller
 
     public function confirmCart()
     {
+        Session::forget('cusproductdetail');
         return view('customer/confirmOrder');
     }
 
@@ -134,10 +143,10 @@ class CartOrderController extends Controller
     {
         $r['order_time'] = date('Y-m-d', time());
         $r->validate([
-            'receive_time' => 'required|after_or_equal:order_time',
+            'receive_time' => 'required|after:order_time',
         ], [
             'receive_time.required' => 'Time is required.',
-            'receive_time.after_or_equal' => 'The receive date must be a date after order date.',
+            'receive_time.after' => 'The receive date must after order date.',
         ]);
         $id = uniqid();
         $orderdetail = session()->get('orderdetail');
@@ -148,6 +157,7 @@ class CartOrderController extends Controller
                     "message" => $r->message,
                     "total_price" => $r->total_price,
                     "receive_time" => $r->receive_time,
+                    "order_time" => $r['order_time'],
                 ]
             ];
             session()->put('orderdetail', $orderdetail);
@@ -160,6 +170,7 @@ class CartOrderController extends Controller
                 "message" => $r->message,
                 "total_price" => $r->total_price,
                 "receive_time" => $r->receive_time,
+                "order_time" => $r['order_time'],
             ];
         }
 
@@ -168,6 +179,7 @@ class CartOrderController extends Controller
             "message" => $r->message,
             "total_price" => $r->total_price,
             "receive_time" => $r->receive_time,
+            "order_time" => $r['order_time'],
         ];
 
         session()->put('orderdetail', $orderdetail);
@@ -195,35 +207,57 @@ class CartOrderController extends Controller
             $messages = "";
         }
 
+        $Order_Product = $r->Order_Product;
+        $Order_id = $r->Order_id;
+        $Order_Quantity = $r->Order_Quantity;
+        $Order_Price = $r->Order_Price;
+        $orders_details = DB::table('order_details');
         $id = $r->Customer_order_id;
         $cusdetail = session()->get('cusdetail');
+        $cusproductdetail = session()->get('cusproductdetail');
+
         if (!$cusdetail) {
             $cusdetail = [
                 $id => [
                     "name" => $r->Customer_Name,
                     "phone" => $r->Customer_Phone,
                     "address" => $r->Customer_Address,
+                    "order_time" => $r->Customer_Order_Day,
+                    "receive_time" => $r->Customer_Receive_Day,
+                    "message" => $messages,
+                    "total_price" => $r->Customer_Total_Price,
+                    "product_order_id" => $Order_id,
                 ]
             ];
             session()->put('cusdetail', $cusdetail);
         }
+        $Order_Product_id = $r->Order_Product_id;
+        if (!$cusproductdetail) {
+            for ($i = 0; $i < count($Order_Product); $i++) {
+                $cusproductdetail[$i] = [
+                    'order_product_name' => $Order_Product_id[$i],
+                    'product_name' => $Order_Product[$i],
+                    'product_quantity' => $Order_Quantity[$i],
+                    'product_price' => $Order_Price[$i],
+                ];
+                session()->put('cusproductdetail', $cusproductdetail);
+            }
+        }
+
 
         $insertOrder = order::create([
             'Customer_order_id' => $r->Customer_order_id,
-            'Customer_Name' => $r->Customer_Name,
+            'Customer_Name' =>  strtoupper($r->Customer_Name),
             'Customer_Address' => $r->Customer_Address,
             'Customer_Phone' => $r->Customer_Phone,
+            "order_time" => $r->Customer_Order_Day,
+            'Customer_Order_Day' => $r->Customer_Order_Day,
             'Customer_Receive_Day' => $r->Customer_Receive_Day,
             'Customer_Messages' =>  $messages,
             'Customer_Total_Price' => $r->Customer_Total_Price,
             'Customer_Status' => 1,
         ]);
 
-        $Order_Product = $r->Order_Product;
-        $Order_id = $r->Order_id;
-        $Order_Quantity = $r->Order_Quantity;
-        $Order_Price = $r->Order_Price;
-        $orders_details =DB::table('order_details');
         for ($i = 0; $i < count($Order_Product); $i++) {
             $database = [
                 'Order_IdDetails' => $Order_id,
@@ -233,6 +267,8 @@ class CartOrderController extends Controller
             ];
             $orders_details->insert($database);
         }
+        Session::forget('cart');
+        Session::forget('orderdetail');
         return redirect()->route('getReceipt');
     }
 
@@ -244,8 +280,7 @@ class CartOrderController extends Controller
 
     public function leaveRecaipt()
     {
-        Session::forget('cart');
-        Session::forget('orderdetail');
+        Session::forget('cusproductdetail');
         Session::forget('cusdetail');
         return redirect()->route('index');
     }

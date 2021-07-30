@@ -42,16 +42,22 @@ Route::get('/deleteProduct/{id}', [ProductController::class, 'delete'])->name('d
 Route::get('/hideProduct/{id}/{status}', [ProductController::class, 'hide'])->name('hideProduct.store');
 Route::get('/createUser', [UserController::class, 'Authinterface'])->name('createUser');
 Route::post('/createUser/create', [UserController::class, 'createUser'])->name('createUser.create');
+
 Route::get('/showUser', [UserController::class, 'showUser'])->name('showUser');
 Route::get('getMoreUsers', [UserController::class, 'getMoreUsers'])->name('get-more-users');
+
 Route::get('/editUser/{id}', [UserController::class, 'editUser'])->name('showEditUser');
 Route::post('/updateUser', [UserController::class, 'updateUser'])->name('updateProduct.create');
 Route::get('/deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser.create');
 Route::get('/editOwn/{position}', [UserController::class, 'editOwn'])->name('showown.update');
 Route::post('/updateOwn', [UserController::class, 'updateOwn'])->name('own.update');
 
-Route::get('/viewOrder', [ShowOrderController::class, 'viewOrder'])->name('viewOrder');
-Route::get('getMoreOrders', [ShowOrderController::class, 'getMoreOrders'])->name('get-more-orders');
+Route::get('/viewOrder', [ShowOrderController::class, 'viewOrder_1'])->name('viewOrder');
+Route::get('getMoreOrders', [ShowOrderController::class, 'getMoreOrders_1'])->name('get-more-orders');
+
+Route::get('/viewDoneOrder', [ShowOrderController::class, 'viewOrder_2'])->name('viewDoneOrder');
+Route::get('getMoreDoneOrders', [ShowOrderController::class, 'getMoreOrders_2'])->name('get-more-done-orders');
+
 Route::get('/checkReceiptDetail/{Customer_order_id}', [ShowOrderController::class, 'checkOrderDetails'])->name('checkOrderDetails');
 Route::get('/doneOrder/{Customer_order_id}/{Customer_Status}', [ShowOrderController::class, 'setOrderStatus'])->name('doneOrder.check');
 

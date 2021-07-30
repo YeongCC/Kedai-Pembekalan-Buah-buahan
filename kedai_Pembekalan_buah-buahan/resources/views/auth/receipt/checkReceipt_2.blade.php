@@ -5,7 +5,7 @@
 <div class="container">
     <div class="card-header bg-white">
         <div class="row bg-white ">
-            <div class="col col-xs-3">Users Details</div>
+            <div class="col col-xs-3">Done Orders</div>
             <div class="col col-xs-3 text-right"><a href="{{route('home')}}">Back</a></div>
         </div>
     </div>
@@ -24,8 +24,8 @@
         </div>
     </div>
 
-    <div id="receiptCard">
-        @include('auth/receipt/receiptCard')
+    <div id="receiptDoneCard">
+        @include('auth/receipt/receiptCard_2')
     </div>
 
 </div>
@@ -35,28 +35,28 @@
         $(document).on('click', '.pagination a', function(event) {
           event.preventDefault();
           var page = $(this).attr('href').split('page=')[1];
-          getMoreOrders(page);
+          getMoreDoneOrders(page);
         });
 
         $('#search').on('keyup', function() {
           $value = $(this).val();
-          getMoreOrders(1);
+          getMoreDoneOrders(1);
         });
     });
 
 
-    function getMoreOrders(page) {
+    function getMoreDoneOrders(page) {
 
       var search = $('#search').val();
-
+      var searchUpperCase=search.toUpperCase();
       $.ajax({
         type: "GET",
         data: {
-          'search_query':search,
+          'search_query':searchUpperCase,
         },
-        url: "{{route('get-more-orders')}}" + "?page=" + page,
+        url: "{{route('get-more-done-orders')}}" + "?page=" + page,
         success:function(data) {
-          $('#receiptCard').html(data);
+          $('#receiptDoneCard').html(data);
         }
       });
     }

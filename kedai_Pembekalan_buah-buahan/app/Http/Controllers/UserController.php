@@ -22,18 +22,18 @@ class UserController extends Controller
     protected function createUser(Request $r)
     {
         $r->validate([
-            'name'=>'required',
-            'email'=>'email|unique:users',
-            'password'=>'required|min:8',
-        ],[
-            'name.required'=>'Name field is required',
-            'email.required'=>'Email field is required',
-            'email.unique'=>'Email has already been taken',
-            'password.required'=>'Password field is required',
-            'password.min'=>'Password must be at least 8 characters',
+            'name' => 'required',
+            'email' => 'email|unique:users',
+            'password' => 'required|min:8',
+        ], [
+            'name.required' => 'Name field is required',
+            'email.required' => 'Email field is required',
+            'email.unique' => 'Email has already been taken',
+            'password.required' => 'Password field is required',
+            'password.min' => 'Password must be at least 8 characters',
         ]);
         $createUser = User::create([
-            'name' => $r->name,
+            'name' =>  strtoupper($r->name),
             'email' => $r->email,
             'position' => '2',
             'password' => Hash::make($r->password),
@@ -55,7 +55,7 @@ class UserController extends Controller
         $query = $r->search_query;
         if ($r->ajax()) {
             $user = User::getUsers($query);
-            if(count($user)==0){
+            if (count($user) == 0) {
                 return view('error/userNoResult');
             }
             return view('auth/users/usertable', compact('user'))->render();
@@ -71,19 +71,30 @@ class UserController extends Controller
     public function updateUser(Request $r)
     {
         $r->validate([
-            'name'=>'required',
-            'password'=>'required|min:8',
-        ],[
-            'name.required'=>'Name field is required',
-            'password.required'=>'Password field is required',
-            'password.min'=>'Password must be at least 8 characters',
+            'name' => 'required',
+            'oldpassword' => 'required',
+            'newpassword' => 'required|min:8',
+            'repeatpassword' => 'required|min:8|same:newpassword',
+        ], [
+            'name.required' => 'Name field is required',
+            'oldpassword.required' => 'Password field is required',
+            'newpassword.required' => 'New Password field is required',
+            'newpassword.min' => 'New Password must be at least 8 characters',
+            'repeatpassword.required' => 'Repeat Password field is required',
+            'repeatpassword.min' => 'Repeat Password must be at least 8 characters',
+            'repeatpassword.same' => 'New Password dones not match with Repeat Password',
         ]);
-        $user = User::find($r->id);
-        $user->name = $r->name;
-        $user->password = Hash::make($r->password);
-        $user->save();
-        Session::flash('updateUser', 'User update successful!');
-        return redirect()->route('showUser');
+        $current_user = auth()->user();
+        if (Hash::check($r->oldpassword, $current_user->password)) {
+            $user = User::find($r->id);
+            $user->name =  strtoupper($r->name);
+            $user->password = Hash::make($r->newpassword);
+            $user->save();
+            Session::flash('updateUser', 'User update successful!');
+            return redirect()->route('showUser');
+        } else {
+            return redirect() - back()->with('error', 'Old password dones not matched');
+        }
     }
 
     public function deleteUser($id)
@@ -103,19 +114,29 @@ class UserController extends Controller
     public function updateOwn(Request $r)
     {
         $r->validate([
-            'name'=>'required',
-            'password'=>'required|min:8',
-        ],[
-            'name.required'=>'Name field is required',
-            'password.required'=>'Password field is required',
-            'password.min'=>'Password must be at least 8 characters',
+            'name' => 'required',
+            'oldpassword' => 'required',
+            'newpassword' => 'required|min:8',
+            'repeatpassword' => 'required|min:8|same:newpassword',
+        ], [
+            'name.required' => 'Name field is required',
+            'oldpassword.required' => 'Password field is required',
+            'newpassword.required' => 'New Password field is required',
+            'newpassword.min' => 'New Password must be at least 8 characters',
+            'repeatpassword.required' => 'Repeat Password field is required',
+            'repeatpassword.min' => 'Repeat Password must be at least 8 characters',
+            'repeatpassword.same' => 'New Password dones not match with Repeat Password',
         ]);
-        $user = User::find($r->position);
-        $user->name = $r->name;
-        $user->password = Hash::make($r->password);
-        $user->save();
-        Session::flash('updateOwn', 'Update successful!');
-        return redirect()->route('home');
+        $current_user = auth()->user();
+        if (Hash::check($r->oldpassword, $current_user->password)) {
+            $user = User::find($r->position);
+            $user->name = $r->name;
+            $user->password = Hash::make($r->newpassword);
+            $user->save();
+            Session::flash('updateOwn', 'Update successful!');
+            return redirect()->route('home');
+        } else {
+            return redirect() - back()->with('error', 'Old password dones not matched');
+        }
     }
-
 }

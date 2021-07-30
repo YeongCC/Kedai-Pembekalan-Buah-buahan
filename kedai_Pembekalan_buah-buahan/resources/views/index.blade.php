@@ -18,11 +18,11 @@
 
     function getMoreProducts(page) {
       var search = $('#search').val();
-
+      var searchUpperCase=search.toUpperCase();
       $.ajax({
         type: "GET",
         data: {
-          'search_query':search,
+          'search_query':searchUpperCase,
         },
         url: "{{route('get-more-products-cus')}}" + "?page=" + page,
         success:function(data) {
@@ -30,7 +30,6 @@
         }
       });
     }
-
 </script>
 @endpush
 

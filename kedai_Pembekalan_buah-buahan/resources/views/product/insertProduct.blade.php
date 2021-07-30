@@ -20,7 +20,7 @@
                             <label for="Product_Name" class="col-md-4 col-form-label text-md-right">Product Name</label>
 
                             <div class="col-md-6">
-                                <input id="Product_Name" type="text" class="form-control" name="Product_Name">
+                                <input id="Product_Name" type="text" class="form-control" name="Product_Name" value="{{ old('Product_Name') }}">
                                 <span id="namefield" style="color:red;">{{$errors->first('Product_Name')}}</span>
                             </div>
 
@@ -31,11 +31,11 @@
                                 Picture</label>
                             <div class="col-md-6">
                                 <div class="drag-area">
-                                    <img id="profileDisplay" style="width: 270px;height:270px;object-fit: contain ;">
-                                    <div class="icon" onclick="triggerClick()"><i
+                                    <img id="profileDisplay" style="width: 270px;height:270px;object-fit: contain;display:none" >
+                                    <div class="icon" onclick="triggerClick()" style="margin-top: 3%"><i
                                             class="fas fa-cloud-upload-alt"></i>&nbsp;Upload</div>
                                     <input name="product_image" type="file" id="product-image"
-                                        onchange="displayImage(this)" style="display: none;" accept="image/*">
+                                        onchange="displayImage(this)" style="display: none;" accept="image/*" value="{{ old('product_image') }}">
                                     <span id="picturefield" style="color:red;">{{$errors->first('product_image')}}</span>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <label for="Product_Price" class="col-md-4 col-form-label text-md-right">Product Price</label>
 
                             <div class="col-md-6">
-                                <input id="Product_Price" type="text" class="form-control " name="Product_Price">
+                                <input id="Product_Price" type="text" class="form-control " name="Product_Price"  placeholder="RM" value="{{ old('Product_Price') }}">
                                 <span id="pricefield" style="color:red;">{{$errors->first('Product_Price')}}</span>
                             </div>
                         </div>

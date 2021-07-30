@@ -18,7 +18,7 @@
                         @csrf
                         <input type="text" name="position" id="position" value="{{$user->position}}" style="display : none;">
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">User Name </label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name </label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name"  value="{{$user->name}}">
@@ -28,10 +28,26 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">User Password</label>
+                            <label for="oldpassword" class="col-md-4 col-form-label text-md-right">Old Password</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control " name="password"  value="">
-                                <span id="password" style="color:red;">{{$errors->first('password')}}</span>
+                                <input id="oldpassword" type="password" class="form-control " name="oldpassword"  value="">
+                                <span id="oldpassword" style="color:red;">{{$errors->first('oldpassword')}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="newpassword" class="col-md-4 col-form-label text-md-right">New Password</label>
+                            <div class="col-md-6">
+                                <input id="newpassword" type="password" class="form-control " name="newpassword"  value="">
+                                <span id="newpassword" style="color:red;">{{$errors->first('newpassword')}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="repeatpassword" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input id="repeatpassword" type="password" class="form-control " name="repeatpassword"  value="">
+                                <span id="repeatpassword" style="color:red;">{{$errors->first('repeatpassword')}}</span>
                             </div>
                         </div>
 

@@ -22,19 +22,21 @@ class ProductController extends Controller
     {
         $r->validate([
             'Product_Name'=>'required',
-            'product_image'=>'required',
+            'product_image'=>'required|mimes:jpeg,png,jpg',
             'Product_Price'=>'required|numeric',
         ],[
             'Product_Name.required'=>'Product field is required.',
             'product_image.required'=>'Image is required.',
+            'product_image.mimes'=>'The select image must be a file of type : jpeg, png, jpg',
             'Product_Price.required'=>'Product Price field is required.',
             'Product_Price.numeric'=>'Product Price field must be number.',
         ]);
+
         $image = $r->file('product_image');
         $image->move('images/product', $image->getClientOriginalName());
         $imageName = $image->getClientOriginalName();
         $insertProduct = product::create([
-            'Product_Name' => $r->Product_Name,
+            'Product_Name' => strtoupper($r->Product_Name),
             'Product_Picture' => $imageName,
             'Product_Price' => $r->Product_Price,
             'Product_Status' => "1",
@@ -86,7 +88,7 @@ class ProductController extends Controller
             $product->Product_Picture = $imageName;
         }
 
-        $product->Product_Name = $r->Product_Name;
+        $product->Product_Name =  strtoupper($r->Product_Name);
         $product->Product_Price = $r->Product_Price;
         $product->save();
         Session::flash('update', 'Product update successful!');

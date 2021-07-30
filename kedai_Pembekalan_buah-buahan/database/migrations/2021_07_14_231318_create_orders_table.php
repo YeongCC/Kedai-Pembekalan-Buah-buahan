@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('Customer_Name',255);
             $table->string('Customer_Address',255);
             $table->string('Customer_Phone',255);
+            $table->string('Customer_Order_Day',255);
             $table->string('Customer_Receive_Day',255);
             $table->string('Customer_Messages',255);
             $table->string('Customer_Total_Price',255);

@@ -56,7 +56,7 @@
                                             data-id="{{ $id }}"><i class="fa fa-trash"></i>
                                         </button>
                                     </div>
-
+                                </div>
                             </td>
                         </tr>
                         @endforeach
@@ -68,11 +68,11 @@
             <div class="row">
                 <div class="col-sm-12  col-md-6">
                     <div style="text-align: center;"><a class="btn btn-outline-secondary text-uppercase btn-block"
-                            style="border: none;font-size:15px" href="{{url('/')}}">Continue Shopping</a></div>
+                            style="font-size:15px;margin-top:2%" href="{{url('/')}}">Continue Shopping</a></div>
                 </div>
                 <div class="col-sm-12 col-md-6 ">
                     <div style="text-align: center;"><a class="btn btn-outline-secondary text-uppercase btn-block clear"
-                            style="border: none;font-size:15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear
+                            style="font-size:15px;margin-top:2%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear
                             Cart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </div>
 
@@ -98,15 +98,14 @@
                         @if(session('orderdetail'))
                         @foreach(session('orderdetail') as $id => $cus_details)
                         <div class="container">
-                            <textarea name="message"
-                                style="height: 310px; width:100%;margin-top:3%;">{{ $cus_details['message'] }}</textarea>
-                                <input type="text" style="display : none;" name="order_id" value="{{ $cus_details['order_id'] }}">
+                            <textarea name="message" style="height: 310px; width:100%;margin-top:3%;" placeholder="Secondary Phone Number / Message Card& / Special Instruction">{{ $cus_details['message'] }}</textarea>
+                            <input type="text" style="display : none;" name="order_id"
+                                value="{{ $cus_details['order_id'] }}">
                         </div>
                         @endforeach
                         @else
                         <div class="container">
-                            <textarea name="message"
-                                style="height: 310px; width:100%;margin-top:3%;"></textarea>
+                            <textarea name="message" style="height: 310px; width:100%;margin-top:3%;" >{{ old('message') }}</textarea>
                         </div>
                         @endif
 

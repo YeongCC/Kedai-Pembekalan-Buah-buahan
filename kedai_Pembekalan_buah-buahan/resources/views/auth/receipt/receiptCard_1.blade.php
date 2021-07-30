@@ -15,6 +15,7 @@
                     <tbody>
                         @php($i=1)
                         @foreach($order as $key)
+                        @if($key->Customer_Status==1)
                         <tr>
                             <td  >
                                 {{$i++}}
@@ -33,6 +34,7 @@
                                 href="{{ route('checkOrderDetails', ['Customer_order_id' => $key->Customer_order_id]) }}">Check</a>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>

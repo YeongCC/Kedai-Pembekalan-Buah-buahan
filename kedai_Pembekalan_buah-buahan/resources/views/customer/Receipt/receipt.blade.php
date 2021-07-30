@@ -1,77 +1,119 @@
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
-    <div class="container" style="margin-top:3%;margin-bottom:3%">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <div class="row bg-white ">
-                            <div class="col col-xs-6" style="font-size: 30px">Your Orders</div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-body">
-                        @foreach(session('cusdetail') as $id => $cus_details)
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Customer Name :
-                                <a style="color:green">{{ $cus_details['name'] }}</a></label>
-                        </div>
+    td {
+        text-align: center;
+    }
+</style>
+@foreach(session('cusdetail') as $id => $cus_details)
+<?php
+$i=1;
+$cus_details_name=$cus_details['name'];
+$cus_details_phone=$cus_details['phone'] ;
+$cus_details_address=$cus_details['address'];
+$cus_details_order_time=$cus_details['order_time'];
+$cus_details_receive_time=$cus_details['receive_time'];
+$cus_details_message=$cus_details['message'];
+$cus_details_total_price=$cus_details['total_price'];
+$cus_details_product_order_id=$cus_details['product_order_id'];
+?>
+@endforeach
 
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Phone Number  :
-                                <a style="color:green">{{$cus_details['phone'] }}</a></label>
+<div class="container" style="margin-top:3%;margin-bottom:3%">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <p style="font-size: 25px">SCA TRADING</p>
+                <div class="card-header bg-white">
+                    <div class="row bg-white ">
+                        <div class="col-sm-12  col-md-6" style="font-size: 25px">
+                            Order&nbsp;Id&nbsp;:&nbsp;{{ $cus_details_product_order_id }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order&nbsp;Date&nbsp;:&nbsp;{{ $cus_details_order_time }}
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Address    :
-                                <a style="color:green">{{$cus_details['address'] }}</a></label>
-                        </div>
-                        @endforeach
-                        @foreach(session('orderdetail') as $id => $cus_order_details)
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Order Id   : <a
-                                    style="color:green">{{ $cus_order_details['order_id'] }}</a></label>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Receive Day    :
-                                <a style="color:green">{{ $cus_order_details['receive_time'] }}</a></label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Total Price    :
-                                <a style="color:green">RM {{ $cus_order_details['total_price'] }}</a></label>
-                        </div>
-                        @if($cus_order_details['message']!="")
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Messages    : <a
-                                    style="color:green">{{ $cus_order_details['message'] }}</a></label>
-                        </div>
-                        @endif
-                        @endforeach
-                        <hr>
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left" style="font-size: 30px">Product</label>
-                        </div>
-                        <hr>
-
-                        @foreach(session('cart') as $id => $details)
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left">Product : <a style="color:green">
-                                    {{ $details['name'] }}</a></label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left">Quantity : <a
-                                    style="color:green">{{ $details['quantity'] }}</a></label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left">Price : <a style="color:green">RM
-                                    {{ $details['price'] }}</a></label>
-                        </div>
-                        <hr>
-                        @endforeach
 
                     </div>
                 </div>
+                <div class="card-body">
+                    <br>
+
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left" style="font-size: 20px">Customer Name :
+                            <a style="color:green">{{ $cus_details_name }}</a></label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left" style="font-size: 20px">Phone Number :
+                            <a style="color:green">{{ $cus_details_phone }}</a></label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left" style="font-size: 20px">Address :
+                            <a style="color:green">{{ $cus_details_address }}</a></label>
+                    </div>
+                    <br>
+                    @if($cus_details_message!="")
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left" style="font-size: 20px">Messages : <a
+                                style="color:green">{{$cus_details_message}}</a></label>
+                    </div>
+                    <br>
+                    @endif
+
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left" style="font-size: 20px">Receive Day :
+                            <a style="color:green">{{ $cus_details_receive_time }}</a></label>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <table class="table" width="100%" style="border-collapse: collapse; border: 0px;">
+                        <thead>
+                            <tr>
+                                <th style="float: left">No</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(session('cusproductdetail') as $Order_Product_id =>
+                            $cus_order_details)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$cus_order_details['product_name']}}</td>
+                                <td>{{$cus_order_details['product_quantity']}}</td>
+                                <td>{{$cus_order_details['product_price']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left"
+                            style="font-size: 25px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;Price&nbsp;:&nbsp;<a
+                                style="color:green">{{ $cus_details_total_price }}</a></label>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left" style="font-size: 20px"> Hotline:
+                            07-2343143 | Whatsapp: <a
+                                href="https://api.whatsapp.com/send/?phone=60127370802&text&app_absent=0"
+                                style="text-decoration: none; color: black;">&nbsp;012-7370802</a></label>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
-
+</div>

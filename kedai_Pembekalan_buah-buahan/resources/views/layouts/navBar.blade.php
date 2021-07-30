@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Kedai Pembekalan Buah-Buahan</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icon/fruits.png')}}">
@@ -75,13 +75,14 @@
                     <li class="nav-item">
                         <a class="nav-link social-icon" href="{{url('/cart')}}"> <i class="fa fa-cart-plus"
                                 style="font-size:25px"></i>
-                            <p>{{ count(session('cart')) }}</p>
+                            <p class="countCart">{{ count(session('cart')) }}</p>
                             <div class="tooltip">Cart</div>
                         </a></li>
                     @else
                     <li class="nav-item">
                     <a class="nav-link social-icon" href="{{url('/cart')}}">
-                        <i class="fa fa-cart-plus" style="font-size:36px"></i>
+                        <i class="fa fa-cart-plus" style="font-size:25px"></i>
+                        <p class="countCart"></p>
                         <div class="tooltip">Cart</div>
                     </a></li>
                     @endif
