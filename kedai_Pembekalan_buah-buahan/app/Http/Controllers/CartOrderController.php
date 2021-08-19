@@ -269,6 +269,7 @@ class CartOrderController extends Controller
         }
         Session::forget('cart');
         Session::forget('orderdetail');
+        Session::flash('newOrderReceived', true);
         return redirect()->route('getReceipt');
     }
 

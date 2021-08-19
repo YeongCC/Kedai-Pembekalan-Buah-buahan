@@ -105,9 +105,9 @@ class UserController extends Controller
         return redirect()->route('showUser');
     }
 
-    public function editOwn($position)
+    public function editOwn($id)
     {
-        $user = User::all()->where('position', $position);
+        $user = User::all()->where('id', $id);
         return view('auth/passwords/ownUpdate')->with('user', $user);
     }
 

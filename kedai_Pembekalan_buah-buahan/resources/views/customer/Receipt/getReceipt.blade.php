@@ -47,7 +47,6 @@ $cus_details_product_order_id=$cus_details['product_order_id'];
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-
                     <div class="card-header bg-white">
                         <div class="row bg-white ">
                             <div class="col-sm-12  col-md-6">Order Id : {{ $cus_details_product_order_id }}</div>

@@ -49,7 +49,7 @@ Route::get('getMoreUsers', [UserController::class, 'getMoreUsers'])->name('get-m
 Route::get('/editUser/{id}', [UserController::class, 'editUser'])->name('showEditUser');
 Route::post('/updateUser', [UserController::class, 'updateUser'])->name('updateProduct.create');
 Route::get('/deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser.create');
-Route::get('/editOwn/{position}', [UserController::class, 'editOwn'])->name('showown.update');
+Route::get('/editOwn/{id}', [UserController::class, 'editOwn'])->name('showown.update');
 Route::post('/updateOwn', [UserController::class, 'updateOwn'])->name('own.update');
 
 Route::get('/viewOrder', [ShowOrderController::class, 'viewOrder_1'])->name('viewOrder');

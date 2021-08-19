@@ -17,7 +17,6 @@
 </div> ​
 @endif
 <div class="container">
-
     <p style="font-size: 30px">Order Details</p>
     <hr>
     <div class="row">
@@ -89,7 +88,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="material-icons" style="font-size:36px">account_circle</i></h5>
-                    <a href="{{ route('showown.update', ['position' => "1"]) }}">Manage Own Account</a>
+                    <a href="{{ route('showown.update', ['id' => Auth::user()->id]) }}">Manage Own Account</a>
                 </div>
             </div>
         </div>
@@ -100,7 +99,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h5 class="card-title"><i class="material-icons" style="font-size:36px">account_circle</i></h5>
-                    <a href="{{ route('showown.update', ['position' => "1"]) }}">Manage Own Account</a>
+                    <a href="{{ route('showown.update', ['id' => Auth::user()->id]) }}">Manage Own Account</a>
                 </div>
             </div>
         </div>
